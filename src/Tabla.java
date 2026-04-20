@@ -58,8 +58,7 @@ class tabla {
         }
     }
 
-
-
-
-
+    public Casilla[][] getCasillas() {
+        return this.casillas;
+    }
 }
