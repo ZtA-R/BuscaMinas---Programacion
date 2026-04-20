@@ -43,7 +43,20 @@ class tabla {
         }
     }
 
+    public void ponerMinas(int cantidad) {
+        int minasPuestas = 0;
 
+        while (minasPuestas < cantidad) {
+            int f = (int) (Math.random() * FILAS_GAME);
+            int c = (int) (Math.random() * COLUMNAS_GAME);
+
+
+            if(!casillas[f][c].getTieneMina()){
+                casillas[f][c].setTieneMina(true);
+                minasPuestas++;
+            }
+        }
+    }
 
 
 
