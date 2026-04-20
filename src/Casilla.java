@@ -4,6 +4,8 @@ class Casilla {
     private boolean estaVacio = true;
     private boolean tieneBandera = false;
     private int minasAlrededor = 0;
+    private boolean estaRevelada = false;
+
 
     public boolean getTieneMina(){
         return tieneMina;
@@ -35,5 +37,13 @@ class Casilla {
 
     public void setMinasAlrededor(int minasAlrededor) {
         this.minasAlrededor = minasAlrededor;
+    }
+
+    public boolean getestaRevelada (){
+        return estaRevelada;
+    }
+
+    public void setEstaRevelada(boolean estaRevelada){
+        this.estaRevelada = estaRevelada;
     }
 }

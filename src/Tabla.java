@@ -2,25 +2,51 @@ class tabla {
 
     private final int FILAS_GAME = 9;
     private final int COLUMNAS_GAME = 9;
+    private Casilla[][] casillas;
 
-
-    public char [][] tableroBuscaMinas(){
-        char [][] talberoOriginal = new char[FILAS_GAME][COLUMNAS_GAME];
-        for(int i = 0; i< talberoOriginal.length; i++){
-            for(int j = 0; j < talberoOriginal.length; j++){
-                    talberoOriginal[i][j] = 0;
+    public tabla() {
+        casillas = new Casilla[FILAS_GAME][COLUMNAS_GAME];
+        for (int i = 0; i < FILAS_GAME; i++) {
+            for (int j = 0; j < COLUMNAS_GAME; j++) {
+                casillas[i][j] = new Casilla();
             }
         }
-        return talberoOriginal;
     }
 
-    public void imprimirTablero(char[][] tableroOriginal){
-        for(int i = 0; i< FILAS_GAME;i++){
-            for(int j = 0; j < COLUMNAS_GAME; j++){
-                if (j == 0) System.out.println("|");
-                System.out.println(tableroOriginal[i][j] + "|");
+    public void imprimirTablero() {
+
+        for (int i = 0; i < FILAS_GAME; i++) {
+            System.out.print(i + " |"); // Número de fila
+
+            for (int j = 0; j < COLUMNAS_GAME; j++) {
+                Casilla c = casillas[i][j];
+
+                if (!c.getestaRevelada()) {
+                    // Si está tapada, miramos si el usuario puso una bandera
+                    if (c.getTieneBandera()) {
+                        System.out.print("F|"); // F de Flag (Bandera)
+                    } else {
+                        System.out.print(".|"); // Casilla sin tocar
+                    }
+                } else {
+                    // Si la casilla ESTÁ REVELADA:
+                    if (c.getTieneMina()) {
+                        System.out.print("*|"); // ¡Bomba!
+                    } else if (c.getMinasAlrededor() > 0) {
+                        System.out.print(c.getMinasAlrededor() + "|"); // El número
+                    } else {
+                        System.out.print(" |"); // Espacio vacío si es 0
+                    }
+                }
             }
             System.out.println();
         }
     }
+
+
+
+
+
+
+
 }
